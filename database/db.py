@@ -15,9 +15,8 @@ def CreateDB():
 
 def SupprContact(id):
     parameter = id
-    cursor.execute(f"DELETE FROM contacts WHERE id = '{id}'")
+    cursor.execute("DELETE FROM contacts WHERE id = ?", (id,))
     con.commit()
-
 
 
 def afficherDb():
@@ -38,6 +37,6 @@ def afficherDb():
 def NouveauContact(id, nom, prenom, numero, email):
     parameters = (id, nom, prenom, numero, email)
 
-    cursor.execute(f"INSERT INTO contacts(id, nom, prenom, numero, email) VALUES (?, ?, ?, ?, ?)", parameters)
+    cursor.execute("INSERT INTO contacts(id, nom, prenom, numero, email) VALUES (?, ?, ?, ?, ?)", parameters)
     #cursor.execute(f"INSERT INTO contacts(nom, prenom, numero, email) VALUES ('{nom}', '{prenom}', '{numero}', '{email}')")
     con.commit()
