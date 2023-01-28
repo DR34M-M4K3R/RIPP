@@ -1,7 +1,8 @@
 
-# RIPP 📲
+<img src="https://user-images.githubusercontent.com/67145585/215285603-1cd1f2cf-fd55-4664-95f7-fea6f3491b34.png" width=250>
 
-![icone](https://user-images.githubusercontent.com/67145585/215285603-1cd1f2cf-fd55-4664-95f7-fea6f3491b34.png)
+# RIPP ☎️
+
 Really Intelligent Python Phone book est un programme qui permet d'enregistrer et gérer des contacts dans une base de donnée.
 Avec cela est inclus la gestion des différents répertoires, le tout rendu en temps réel sur votre moniteur grâce au moteur de graphismes de dernière génération **Tkinter**.
 
