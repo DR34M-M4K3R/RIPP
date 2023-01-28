@@ -41,9 +41,12 @@ class app():
             self.myDb = db(database_name)
             #self.myDb.createDB(database_name)
             self.root = tk.Tk()
+            photo = tk.PhotoImage(file="icone.png")
+            self.root.iconphoto(False, photo)
             self.root.grid_rowconfigure(0, weight=1)
             self.root.columnconfigure(0, weight=1)
             self.root.geometry("1200x600")
+            self.root.title("RIPP")
 
 
 
@@ -331,12 +334,14 @@ class startupWindow():
 
         self.master = tk.Tk()
         self.master.geometry('370x200')
+        photo = tk.PhotoImage(file="icone.png")
+        self.master.iconphoto(False, photo)
         self.master.grid_columnconfigure(4, minsize=100)
 
 
         content_frame = tk.Frame(self.master, bg="white")
         content_frame.pack(anchor=tk.N, fill=tk.BOTH, expand=True, side=tk.LEFT )
-        self.master.title('Select a file')
+        self.master.title('RIPP | Choisissez ou créez un répertoire')
 
 
         self.optmenu = ttk.Combobox(content_frame, values=filelist, state='readonly')
