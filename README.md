@@ -20,4 +20,10 @@ Grâce à RIPP, vous pourrez:
 
 RIPP ne réponds à aucune norme de sécurité informatique: aucun chiffrement additionel, pas de système de sauvegarde... et un risque fort de défaillance suivant les systèmes d'exploitations, ainsi que l'utilisation de librairies extérieures.
 
-## Screenshots (Debian 10)
+## Screenshots (Debian10)
+
+![1](https://user-images.githubusercontent.com/67145585/215287596-9cc97a7d-22db-40d5-b0b0-f6c7e643f39e.png)
+
+![2](https://user-images.githubusercontent.com/67145585/215287606-7f631e04-6310-4878-810e-75478bbc7a5d.png)
+
+
