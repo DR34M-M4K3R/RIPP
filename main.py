@@ -37,7 +37,7 @@ class app():
 
     def __init__(self, database_name):
             self.database_name=database_name
-            self.cellules=[]
+            self.cells=[]
             self.myDb = db(database_name)
             #self.myDb.createDB(database_name)
             self.root = tk.Tk()
@@ -76,7 +76,7 @@ class app():
             self.canvas.configure(yscrollcommand=self.vsb.set)
 
             # Creation de la frame qui contient les cellules
-            self.frame_cellules = tk.Frame(self.canvas, bg="red")
+            self.frame_cells = tk.Frame(self.canvas, bg="red")
             self.canvas.create_window((0, 0), window=self.frame_cellules, anchor='nw')
 
             self.first = tk.Label(frame_main, text="Aucun contacts. Ajoutez-en via les entrées à droite.", height=1, bg='white', fg='black')
@@ -183,7 +183,6 @@ class app():
         if len(args)==0:
             self.log("Mise à jour des cellules avec les valeurs de la bdd...")
             my_conn = sqlite3.connect(self.database_name)
-            cursor = my_conn.cursor()
             dataSet=my_conn.execute('''SELECT * FROM contacts ORDER BY nom''')
 
 
@@ -192,11 +191,11 @@ class app():
             self.log("Mise à jour des cellules avec les valeurs de la recherche...")
             self.log(args)
             dataSet=args
-            dataSetTest=[]
+            dataSetList=[]
             for contact in dataSet:
                 for j in contact:
-                    dataSetTest.append(j)
-            dataSet=dataSetTest
+                    dataSetList.append(j)
+            dataSet=dataSetList
 
         try:
             self.noDataLabel.grid_forget()
@@ -206,9 +205,9 @@ class app():
 
 
         # Reinitialisation des cellules
-        for text in self.cellules:
+        for text in self.cells:
             text.grid_forget()
-        self.cellules=[]
+        self.cells=[]
 
         rows = 9
         i=0
@@ -216,23 +215,22 @@ class app():
         # on affiche les cellules
         for contact in dataSet:
             for j in range(len(contact)):
-                c = tk.Text(self.frame_cellules, width=17, height=1, bg='white', fg='black')
+                c = tk.Text(self.frame_cells, width=17, height=1, bg='white', fg='black')
                 c.insert(tk.END, contact[j])
                 #c.configure(state='disabled')
                 c.grid(row=i, column=j, sticky='news')
-                self.cellules.append(c)
+                self.cells.append(c)
             i=i+1
 
 
-        # Calculer la taille des cellules
-        self.frame_cellules.update_idletasks()
-
+        # Calculer la taille des cellules https://stackoverflow.com/a/43788752
+        self.frame_cells.update_idletasks()
         try:
-            first5rows_height = sum([self.cellules[i].winfo_height() for i in range(0, 5)])+200
-            first5columns_width = sum([self.cellules[i].winfo_width() for j in range(0, 5)])
+            first5rows_height = sum([self.cells[i].winfo_height() for i in range(0, 5)])+200
+            first5columns_width = sum([self.cells[i].winfo_width() for j in range(0, 5)])
             self.frame_canvas.config(width=self.vsb.winfo_width()+first5columns_width, height=first5rows_height)
         except Exception as e:
-            self.noDataLabel = tk.Label(self.frame_cellules, text="Aucun contacts. Ajoutez-en via les entrées à droite.", height=1, bg='white', fg='black')
+            self.noDataLabel = tk.Label(self.frame_cells, text="Aucun contacts. Ajoutez-en via les entrées à droite.", height=1, bg='white', fg='black')
             self.noDataLabel.grid(row=7, column=1)
 
         self.canvas.config(scrollregion=self.canvas.bbox("all"))
@@ -241,7 +239,7 @@ class app():
         self.numeroEntry.delete(0, tk.END)
         self.emailEntry.delete(0, tk.END)
 
-        if len(self.cellules)!=0:
+        if len(self.cells)!=0:
             self.first.grid_forget()
         else:
             pass
